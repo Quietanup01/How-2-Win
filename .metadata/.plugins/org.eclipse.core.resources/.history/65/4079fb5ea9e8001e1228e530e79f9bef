@@ -1,0 +1,78 @@
+package bank;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class AdminHomePage extends JFrame implements ActionListener {
+    JButton registerButton;
+    JButton deleteButton;
+    JButton modifyButton;
+    JButton viewButton;
+
+    AdminHomePage() {
+        super("Admin Home Page");
+
+        // Set background color
+        getContentPane().setBackground(new Color(215, 230, 245));
+
+        // Create buttons
+        registerButton = new JButton("Register Customer");
+        registerButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        registerButton.setPreferredSize(new Dimension(200, 40));
+        registerButton.addActionListener(this);
+
+        deleteButton = new JButton("Delete Customer");
+        deleteButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        deleteButton.setPreferredSize(new Dimension(200, 40));
+        deleteButton.addActionListener(this);
+
+        modifyButton = new JButton("Modify Customer");
+        modifyButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        modifyButton.setPreferredSize(new Dimension(200, 40));
+        modifyButton.addActionListener(this);
+
+        viewButton = new JButton("View Customer Details");
+        viewButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        viewButton.setPreferredSize(new Dimension(200, 40));
+        viewButton.addActionListener(this);
+
+        // Create panel to hold buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        buttonPanel.add(registerButton);
+        buttonPanel.add(Box.createVerticalStrut(10)); // Add vertical spacing
+        buttonPanel.add(deleteButton);
+        buttonPanel.add(Box.createVerticalStrut(10)); // Add vertical spacing
+        buttonPanel.add(modifyButton);
+        buttonPanel.add(Box.createVerticalStrut(10)); // Add vertical spacing
+        buttonPanel.add(viewButton);
+
+        // Add buttons panel to the frame
+        add(buttonPanel);
+
+        // Set frame properties
+        pack(); // Adjust frame size to fit components
+        setLocationRelativeTo(null); // Center the frame on the screen
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == registerButton) {
+            JOptionPane.showMessageDialog(this, "Register Customer clicked");
+        } else if (e.getSource() == deleteButton) {
+            JOptionPane.showMessageDialog(this, "Delete Customer clicked");
+        } else if (e.getSource() == modifyButton) {
+            JOptionPane.showMessageDialog(this, "Modify Customer clicked");
+        } else if (e.getSource() == viewButton) {
+            JOptionPane.showMessageDialog(this, "View Customer Details clicked");
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new AdminHomePage());
+    }
+}

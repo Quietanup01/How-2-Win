@@ -1,0 +1,13 @@
+package bank;
+
+public class AdminHome {
+
+	
+	AdminHome(){
+		System.out.println("Admin Login Sucessfull");
+	}
+	
+	public static void main(String args[]) {
+		
+	}
+}

@@ -1,0 +1,67 @@
+package bank;
+
+
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class WelcomePage extends JFrame implements ActionListener {
+    JButton adminButton;
+    JButton customerButton;
+
+    WelcomePage() {
+        super("Welcome Page");
+
+        // Create buttons
+        ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("icon/bank.png"));
+        Image i2 = i1.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
+        JLabel image = new JLabel(i3);
+        image.setBounds(350,10,100,100);
+        add(image);
+
+        ImageIcon ii1 = new ImageIcon(ClassLoader.getSystemResource("icon/card.png"));
+        Image ii2 = ii1.getImage().getScaledInstance(100,100,Image.SCALE_DEFAULT);
+        ImageIcon ii3 = new ImageIcon(ii2);
+        JLabel iimage = new JLabel(ii3);
+        iimage.setBounds(630,350,100,100);
+        add(iimage);
+        adminButton = new JButton("Admin");
+        adminButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        adminButton.setBounds(100, 100, 200, 50);
+        adminButton.addActionListener(this);
+
+        customerButton = new JButton("Customer");
+        customerButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        customerButton.setBounds(100, 200, 200, 50);
+        customerButton.addActionListener(this);
+
+        // Add buttons to frame
+        add(adminButton);
+        add(customerButton);
+
+        // Set frame properties
+        setSize(400, 400);
+        setLayout(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == adminButton) {
+            // Open admin login page or perform admin related actions
+            // Example: new AdminLoginPage();
+            JOptionPane.showMessageDialog(this, "Admin clicked");
+        } else if (e.getSource() == customerButton) {
+            // Open customer login page or perform customer related actions
+            // Example: new CustomerLoginPage();
+            JOptionPane.showMessageDialog(this, "Customer clicked");
+        }
+    }
+
+    public static void main(String[] args) {
+        new WelcomePage();
+    }
+}

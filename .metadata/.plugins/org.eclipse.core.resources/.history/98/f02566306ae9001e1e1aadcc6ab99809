@@ -1,0 +1,46 @@
+package bank;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+
+public class Transaction extends JFrame {
+    public Transaction() {
+        super("Transaction Table");
+        setLayout(null);
+        setSize(1550, 1080);
+        setLocation(0, 0);
+
+        // Create a table model
+        DefaultTableModel model = new DefaultTableModel();
+        JTable table = new JTable(model);
+
+        // Add columns to the table model
+        model.addColumn("PIN");
+        model.addColumn("Date");
+        model.addColumn("Amount");
+        model.addColumn("Type");
+        model.addColumn("Final Balance");
+
+        // Add rows to the table model (you need to fetch data from your database here)
+        // For demonstration purposes, adding dummy data
+        model.addRow(new Object[]{"1234", "2024-03-25", "$100", "Deposit", 500});
+        model.addRow(new Object[]{"5678", "2024-03-26", "$50", "Withdrawal", 450});
+
+        // Set table properties
+        table.setBounds(10, 10, 1500, 1000);
+        table.setFont(new Font("Arial", Font.PLAIN, 14));
+        table.setRowHeight(30);
+        JScrollPane scrollPane = new JScrollPane(table);
+        scrollPane.setBounds(10, 10, 1500, 1000);
+        add(scrollPane);
+
+        // Set JFrame properties
+        getContentPane().setBackground(Color.LIGHT_GRAY);
+        setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(Transaction::new);
+    }
+}

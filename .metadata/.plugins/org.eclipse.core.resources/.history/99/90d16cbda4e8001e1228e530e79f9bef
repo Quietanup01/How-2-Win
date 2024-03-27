@@ -1,0 +1,72 @@
+package bank;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+
+public class WelcomePage extends JFrame implements ActionListener {
+    JButton adminButton;
+    JButton customerButton;
+
+    WelcomePage() {
+        super("Welcome Page");
+
+        // Create buttons
+        adminButton = new JButton("Admin");
+        adminButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        adminButton.addActionListener(this);
+
+        customerButton = new JButton("Customer");
+        customerButton.setFont(new Font("Arial", Font.PLAIN, 18));
+        customerButton.addActionListener(this);
+
+        // Create panel to hold buttons
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.add(adminButton);
+        buttonPanel.add(customerButton);
+
+        // Load image
+        ImageIcon backgroundImage = new ImageIcon(ClassLoader.getSystemResource("icon/backbg.png"));
+        Image scaledImage = getScaledImage(backgroundImage.getImage(), getContentPane().getWidth(), getContentPane().getHeight());
+        ImageIcon scaledBackgroundImage = new ImageIcon(scaledImage);
+        JLabel backgroundImageLabel = new JLabel(scaledBackgroundImage);
+
+        // Add components to frame
+        getContentPane().add(backgroundImageLabel);
+        getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+
+        // Set frame properties
+        setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        pack();
+        setVisible(true);
+    }
+
+    private Image getScaledImage(Image srcImg, int width, int height) {
+        BufferedImage resizedImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g2 = resizedImg.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(srcImg, 0, 0, width, height, null);
+        g2.dispose();
+        return resizedImg;
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == adminButton) {
+            // Open admin login page or perform admin related actions
+            // Example: new AdminLoginPage();
+            JOptionPane.showMessageDialog(this, "Admin clicked");
+        } else if (e.getSource() == customerButton) {
+            // Open customer login page or perform customer related actions
+            // Example: new CustomerLoginPage();
+            JOptionPane.showMessageDialog(this, "Customer clicked");
+        }
+    }
+
+    public static void main(String[] args) {
+        new WelcomePage();
+    }
+}
