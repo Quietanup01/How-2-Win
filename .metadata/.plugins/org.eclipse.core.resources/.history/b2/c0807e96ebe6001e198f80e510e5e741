@@ -1,7 +1,0 @@
-package bank;
-
-public class Conn {
-
-	public Object s;
-
-}
